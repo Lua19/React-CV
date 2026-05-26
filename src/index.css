@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'Booster Next FY';
-  src: url('./assets/BoosterNextFY-Bold.woff2') format('woff2');
+  src: url('./assets/Fonts/TRYBoosterNextFY-Bold.ttf');
   font-weight: bold;
   font-style: normal;
 }
@@ -63,7 +63,7 @@
   max-width: 100%;
   margin: 0 auto;
   text-align: center;
-  border-inline: 1px solid var(--white);
+  border-inline: 5px solid var(--white);
   min-height: 100svh;
   display: flex;
   flex-direction: column;

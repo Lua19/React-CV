@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react'
-import Experience from './Experience.tsx'
-import Skills from './Skills.tsx'
-import Contact from './Contact.tsx'
-import AboutMe from './AboutMe.tsx'
+import { useState, useEffect } from 'react';
+import Experience from './Experience'
+import Skills from './Skills'
+import Contact from './Contact'
+import AboutMe from './AboutMe'
 import './App.css'
 
 function App() {

@@ -8,8 +8,8 @@ function AboutMe() {
           <h2>About Me</h2>
           <p>Senior Full-stack developer with 5+ years of experience designing scalable systems in Angular, .NET, and mobile technologies, specializing in scalable REST APIs and CI/CD pipelines. Proven leadership in Agile teams, mentoring junior developers, and driving architectural decisions.</p>
           <div className="contact-details">
-            <p><a href="https://www.linkedin.com/in/miguel-lua-montes-101355217/" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
-            <p><a href="https://github.com/Lua19">Github</a></p>
+            <p><a href="https://www.linkedin.com/in/ivan-lua-montes/" target="_blank" rel="noopener noreferrer">LinkedIn</a> | <a href="https://github.com/Lua19">Github</a></p>
+            <p></p>
           </div>
         </div>
         <div className="about-image">

@@ -67,7 +67,7 @@
 }
 
 .about-text h2 {
-  font-size: 1.5rem;
+  font-size: 2rem;
   margin-bottom: 1.5rem;
 }
 
@@ -305,4 +305,162 @@
     width: 280px;
     height: 280px;
   }
+}
+
+.skills-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 2rem;
+  table-layout: fixed;
+}
+
+.skills-table td {
+  padding: 2.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 1.5rem;
+}
+
+.skills-table td:first-child {
+  width: 30%;
+}
+
+.skills-table td:last-child {
+  width: 70%;
+}
+
+.skills-section h2 {
+  font-size: 2rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.experience-section h2 {
+  font-size: 2rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.carousel-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.carousel-btn {
+  background-color: #ffffff;
+  color: #0098ce;
+  font-weight: bold;
+  border: none;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.carousel-btn:hover {
+  transform: scale(1.1);
+  background-color: #f8f8f8;
+}
+
+.carousel-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.experience-card {
+  width: 40vw;
+  height: 40vh;
+  background-size: cover;
+  background-position: top;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  box-sizing: border-box;
+  border: 5px solid #ffffff;
+  border-radius: 20px;
+}
+
+.experience-info-box {
+  background-color: #ffffff;
+  color: #0098ce;
+  padding: 1rem;
+  border-radius: 12px;
+  width: 50%;
+  box-sizing: border-box;
+}
+
+.experience-info-box h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.2rem;
+}
+
+.carousel-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.indicator-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  background-color: #0098ce;
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s;
+}
+
+.indicator-dot.active {
+  background-color: #ffffff;
+  border-color: #0098ce;
+  transform: scale(1.2);
+}
+
+.highlights-list {
+  max-width: 40vw;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  list-style: disc inside;
+  text-align: left;
+  line-height: 1.6;
+}
+
+.highlights-list li {
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.python-icon {
+  margin-right: 10px;
+  color: #3776ab; /* Official Python Blue */
+  vertical-align: middle;
+}
+
+.skill-item {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 15px;
+  margin-bottom: 12px;
+  gap: 8px;
+  border: 1px solid #ffffff;
+  border-radius: 12px;
+  padding: 6px 16px;
+  color: #ffffff;
+  background: transparent;
+}
+
+.skill-icon {
+  color: #ffffff;
 }
