@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
-  faPython, faJava, faJs, faPhp, faTypescript, faLeetcode, 
+  faPython, faJava, faJs, faPhp, faTypescript, 
   faReact, faAngular, faNodeJs, faDocker, faAws, faDrupal 
 } from '@fortawesome/free-brands-svg-icons';
 import { 
@@ -18,8 +18,8 @@ function Skills() {
   // Mapping for all icons across all categories
   const iconMap: Record<string, any> = {
     // Languages
-    'C++': faLeetcode,
-    'C#': faLeetcode,
+    'C++': faCode,
+    'C#': faCode,
     'Python': faPython,
     'JavaScript': faJs,
     'PHP': faPhp,
@@ -41,7 +41,7 @@ function Skills() {
     'Flask': faServer,
     'NodeJS': faNodeJs,
     'Microservices': faCogs,
-    'REST APIs': faTerminal,
+    'REST APIs': faCode,
     // DevOps
     'CI/CD': faTerminal,
     'Docker': faDocker,

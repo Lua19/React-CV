@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useLocation, Routes, Route, NavLink, Navigate } from 'react-router-dom';
 import Experience from './Experience'
 import Skills from './Skills'
 import Contact from './Contact'
@@ -6,36 +6,27 @@ import AboutMe from './AboutMe'
 import './App.css'
 
 function App() {
-  // Routing state based on the current URL hash, defaulting to #aboutme
-  const [activeTab, setActiveTab] = useState(window.location.hash || '#aboutme')
-
-  useEffect(() => {
-    const handleHashChange = () => {
-      setActiveTab(window.location.hash || '#aboutme')
-    }
-
-    window.addEventListener('hashchange', handleHashChange)
-    return () => window.removeEventListener('hashchange', handleHashChange)
-  }, [])
+  const location = useLocation();
 
   return (
     <div className="cv-app">
-      {/* Navigation Bar */}
       <nav className="top-nav">
-        <a href="#aboutme" className="nav-name">Miguel Ivan Lua Montes</a>
+        <NavLink to="/aboutme" className="nav-name">Miguel Ivan Lua Montes</NavLink>
         <div className="nav-links">
-          <a href="#experience" className={activeTab === '#experience' ? 'active' : ''}>Experience</a>
-          <a href="#skills" className={activeTab === '#skills' ? 'active' : ''}>Skills</a>
-          <a href="#contact" className={activeTab === '#contact' ? 'active' : ''}>Contact</a>
+          <NavLink to="/experience">Experience</NavLink>
+          <NavLink to="/skills">Skills</NavLink>
+          <NavLink to="/contact">Contact</NavLink>
         </div>
       </nav>
 
-      {/* Main Content Area - Component swapped based on activeTab */}
-      <main className="main-content">
-        {activeTab === '#aboutme' && <AboutMe />}
-        {activeTab === '#experience' && <Experience />}
-        {activeTab === '#skills' && <Skills />}
-        {activeTab === '#contact' && <Contact />}
+      <main className="main-content" key={location.pathname}>
+        <Routes>
+          <Route path="/aboutme" element={<AboutMe />} />
+          <Route path="/experience" element={<Experience />} />
+          <Route path="/skills" element={<Skills />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="*" element={<Navigate to="/aboutme" replace />} />
+        </Routes>
       </main>
     </div>
   )

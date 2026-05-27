@@ -80,6 +80,10 @@ body {
   margin: 0;
 }
 
+html {
+  overflow-y: scroll; /* Always show vertical scrollbar to prevent layout shift */
+}
+
 h1,
 h2 {
   font-family: var(--heading);

@@ -2,6 +2,13 @@ import { useState } from 'react';
 
 const experiences = [
   {
+    company: "Linguatec",
+    role: "Leading English Professor",
+    period: "February 2019 - August 2022",
+    highlights: ["Manage 5+ teachers as a team", "Resolve and attend customer complaint", "Schedule meetings, design workplans and accomodate personnel needs"],
+    image: "https://i.ytimg.com/vi/MyUft7zfBXg/maxresdefault.jpg"
+  },
+  {
     company: "Moneta Market",
     role: "Junior Software Engineer",
     period: "Jan 2022 - November 2022",
@@ -38,17 +45,25 @@ const experiences = [
 
 function Experience() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState<'next' | 'prev'>('next');
 
   const nextExperience = () => {
     if (currentIndex < experiences.length - 1) {
+      setDirection('next');
       setCurrentIndex((prev) => prev + 1);
     }
   };
 
   const prevExperience = () => {
     if (currentIndex > 0) {
+      setDirection('prev');
       setCurrentIndex((prev) => prev - 1);
     }
+  };
+
+  const goToIndex = (index: number) => {
+    setDirection(index > currentIndex ? 'next' : 'prev');
+    setCurrentIndex(index);
   };
 
   return (
@@ -63,7 +78,8 @@ function Experience() {
           &lt;
         </button>
         <div 
-          className="experience-card" 
+          key={`card-${currentIndex}`}
+          className={`experience-card slide-in-${direction}`} 
           style={{ backgroundImage: `url(${experiences[currentIndex].image})` }}
         >
           <div className="experience-info-box">
@@ -85,13 +101,13 @@ function Experience() {
           <button
             key={index}
             className={`indicator-dot ${index === currentIndex ? 'active' : ''}`}
-            onClick={() => setCurrentIndex(index)}
+            onClick={() => goToIndex(index)}
             aria-label={`Go to slide ${index + 1}`}
           />
         ))}
       </div>
 
-      <ul className="highlights-list">
+      <ul className={`highlights-list slide-in-${direction}`} key={`list-${currentIndex}`}>
         {experiences[currentIndex].highlights.map((item, idx) => (
           <li key={idx}>{item}</li>
         ))}
