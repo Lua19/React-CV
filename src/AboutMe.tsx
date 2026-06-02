@@ -1,14 +1,16 @@
+import { useTranslation } from 'react-i18next';
 import selfie from './assets/selfie.jpg';
 
 function AboutMe() {
+  const { t } = useTranslation();
   return (
     <section className="section about-me-section" id="aboutme">
       <div className="about-me-grid">
         <div className="about-text">
-          <h2>About Me</h2>
-          <p>Senior Full-stack developer with 5+ years of experience designing scalable systems in Angular, .NET, and mobile technologies, specializing in scalable REST APIs and CI/CD pipelines. Proven leadership in Agile teams, mentoring junior developers, and driving architectural decisions.</p>
+          <h2>{t('aboutme.title')}</h2>
+          <p>{t('aboutme.description')}</p>
           <div className="contact-details">
-            <p><a href="https://www.linkedin.com/in/ivan-lua-montes/" target="_blank" rel="noopener noreferrer">LinkedIn</a> | <a href="https://github.com/Lua19">Github</a></p>
+            <p><a href="https://www.linkedin.com/in/ivan-lua-montes/" target="_blank" rel="noopener noreferrer">{t('aboutme.linkedin')}</a> | <a href="https://github.com/Lua19">{t('aboutme.github')}</a></p>
             <p></p>
           </div>
         </div>

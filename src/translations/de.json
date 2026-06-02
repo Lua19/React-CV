@@ -1,0 +1,34 @@
+{
+  "nav": {
+    "name": "Miguel Ivan Lua Montes",
+    "experience": "Erfahrung",
+    "skills": "Fähigkeiten",
+    "contact": "Kontakt"
+  },
+  "aboutme": {
+    "title": "Über mich",
+    "description": "Senior Full-stack-Entwickler mit mehr als 5 Jahren Erfahrung im Entwurf skalierbarer Systeme in Angular, .NET und mobilen Technologien, spezialisiert auf skalierbare REST-APIs und CI/CD-Pipelines. Bewährte Führung in Agile-Teams, Mentoring von Junior-Entwicklern und Treffen architektonischer Entscheidungen.",
+    "linkedin": "LinkedIn",
+    "github": "Github"
+  },
+  "skills": {
+    "title": "Kernkompetenzen",
+    "loading": "Fähigkeiten werden geladen...",
+    "category1": "Sprachen",
+    "category2": "Datenbanksysteme",
+    "category3": "Front-end Frameworks",
+    "category4": "Back-end Frameworks",
+    "category5": "DevOps-Tools",
+    "category6": "Führungskompetenzen"
+  },
+  "experience": {
+    "title": "Beschäftigungshistorie",
+    "loading": "Erfahrung wird geladen..."
+  },
+  "contact": {
+    "title": "Kontaktieren Sie mich",
+    "description": "Ich bin immer offen für die Diskussion neuer Projekte, kreativer Ideen oder Gelegenheiten, Teil Ihrer Visionen zu sein.",
+    "email": "E-Mail",
+    "linkedin": "LinkedIn"
+  }
+}

@@ -1,51 +1,33 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { apiClient } from './apiService';
 
-const experiences = [
-  {
-    company: "Linguatec",
-    role: "Leading English Professor",
-    period: "February 2019 - August 2022",
-    highlights: ["Manage 5+ teachers as a team", "Resolve and attend customer complaint", "Schedule meetings, design workplans and accomodate personnel needs"],
-    image: "https://i.ytimg.com/vi/MyUft7zfBXg/maxresdefault.jpg"
-  },
-  {
-    company: "Moneta Market",
-    role: "Junior Software Engineer",
-    period: "Jan 2022 - November 2022",
-    highlights: [
-      "Architected a full stack application for e-commerce with integrated payments of $10k+ per month",
-      "Development of mobile applications for user authentication",
-      "Creating a CI/CD pipeline for easy deployment to production (less than 1% downtime on deployments) using Github Actions and Docker"],
-    image: "https://www.monetamarket.com/index/_next/static/media/Landing.9c4a46aa30879bf5.9c4a46aa.jpg"
-  },
-  {
-    company: "Autozone",
-    role: "Programmer Analyst",
-    period: "January 2023 - July 2025",
-    highlights: [
-    "Work within SCRUM framework",
-    "Meeting deadlines and QA requirements with at least 95% acceptance rate",
-    "Performing code reviews, attending releases and solving production issues",
-    "Leading and contributing to software architecture decisions",
-    "Developing software focused on customer experience and time optimization"],
-    image: "https://media.licdn.com/dms/image/v2/D5612AQECOmDhMrz0hQ/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1710519579053?e=2147483647&v=beta&t=PC8PaCLvaewfkBlBEB3KcqXC2grv4hRlH9zJl_2msow"
-  },
-  {
-    company: "Oracle",
-    role: "Senior Applications Developer",
-    period: "July 2025 - April 2026",
-    highlights: [
-    "Develop functions to generate Excel reports of up to 50k rows",
-    "Creating RedwoodJS elements (UI and UX)",
-    "Create automated Playwright tests",
-    "Design and implement REST endpoints on Oracle ADF"],
-    image: "https://cloudfront-us-east-1.images.arcpublishing.com/eluniversal/KJA5XWKSBRETFDJZQ23L3M2QKY.jpg"
-  }
-];
+interface ExperienceItem {
+  role: string;
+  company: string;
+  period: string;
+  imageURL: string;
+  highlights: string[];
+}
 
 function Experience() {
+  const { t } = useTranslation();
+  const [experiences, setExperiences] = useState<ExperienceItem[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState<'next' | 'prev'>('next');
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+      apiClient.getAllExperiences()
+        .then(data => {
+          setExperiences(data);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.error("Error fetching experiences:", error);
+          setLoading(false);
+        });
+    }, []);
 
   const nextExperience = () => {
     if (currentIndex < experiences.length - 1) {
@@ -66,9 +48,11 @@ function Experience() {
     setCurrentIndex(index);
   };
 
+  if (loading) return <section className="section experience-section"><h2>{t('experience.loading')}</h2></section>;
+
   return (
     <section className="section experience-section" id="experience">
-      <h2>Employment History</h2>
+      <h2>{t('experience.title')}</h2>
       <div className="carousel-container">
         <button 
           className="carousel-btn prev" 
@@ -80,7 +64,7 @@ function Experience() {
         <div 
           key={`card-${currentIndex}`}
           className={`experience-card slide-in-${direction}`} 
-          style={{ backgroundImage: `url(${experiences[currentIndex].image})` }}
+          style={{ backgroundImage: `url(${experiences[currentIndex].imageURL})` }}
         >
           <div className="experience-info-box">
             <h3>{experiences[currentIndex].role}</h3>

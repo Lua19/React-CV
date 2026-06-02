@@ -1,5 +1,3 @@
-import type { ExperienceItem } from "./assets/Interfaces/Experience.interface";
-import type { Skill } from "./assets/Interfaces/Skills.interface";
 class ApiClient {
   private readonly baseUrl: string;
 
@@ -29,6 +27,17 @@ class ApiClient {
    */
   async getAllSkills(): Promise<T> {
     const response = await fetch(`${this.baseUrl}/Skills`,{
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    return this.handleResponse<T>(response);
+  }
+
+  async getAllExperiences(): Promise<T> {
+    const response = await fetch(`${this.baseUrl}/Experience`,{
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

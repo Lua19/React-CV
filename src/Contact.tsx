@@ -1,11 +1,14 @@
+import { useTranslation } from 'react-i18next';
+
 function Contact() {
+  const { t } = useTranslation();
   return (
     <section className="section contact-section" id="contact">
-      <h2>Contact Me</h2>
+      <h2>{t('contact.title')}</h2>
       <div className="contact-details">
-        <p>I am always open to discussing new projects, creative ideas, or opportunities to be part of your visions.</p>
-        <p><strong>Email:</strong> miguellua100@gmail.com</p>
-        <p><strong>LinkedIn:</strong>linkedin.com/in/ivan-lua-montes</p>
+        <p>{t('contact.description')}</p>
+        <p><strong>{t('contact.email')}:</strong> miguellua100@gmail.com</p>
+        <p><strong>{t('contact.linkedin')}:</strong> linkedin.com/in/ivan-lua-montes</p>
       </div>
     </section>
   );
