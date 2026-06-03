@@ -9,7 +9,8 @@
     "title": "About Me",
     "description": "Senior Full-stack developer with 5+ years of experience designing scalable systems in Angular, .NET, and mobile technologies, specializing in scalable REST APIs and CI/CD pipelines. Proven leadership in Agile teams, mentoring junior developers, and driving architectural decisions.",
     "linkedin": "LinkedIn",
-    "github": "Github"
+    "github": "Github",
+    "projects": "Current projects"
   },
   "skills": {
     "title": "Core Skills",

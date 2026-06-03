@@ -2,11 +2,12 @@ import { useState, useEffect, useRef } from 'react';
 import { useLocation, Routes, Route, NavLink, Navigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGlobe, faChevronDown } from '@fortawesome/free-solid-svg-icons';
-import Experience from './Experience'
-import Skills from './Skills'
-import Contact from './Contact'
-import AboutMe from './AboutMe'
+import { faGlobe, faChevronDown, faUser, faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
+import Experience from './pages/Experience'
+import Skills from './pages/Skills'
+import Contact from './pages/Contact'
+import AboutMe from './pages/AboutMe'
+import Login from './Login'
 import './App.css'
 
 const languages = [
@@ -20,6 +21,8 @@ function App() {
   const { t, i18n } = useTranslation();
   const [langMenuOpen, setLangMenuOpen] = useState(false);
   const [selectedLang, setSelectedLang] = useState(languages[0]);
+  const [showLogin, setShowLogin] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   // Close dropdown when clicking outside
@@ -42,14 +45,18 @@ function App() {
   return (
     <div className="cv-app">
       <nav className="top-nav">
-        <div className="nav-section empty"></div>
+        <div className="nav-section login-trigger-section">
+          <button onClick={() => setShowLogin(true)} className="login-icon-link" aria-label="Login">
+            <FontAwesomeIcon icon={faUser} />
+          </button>
+        </div>
         
         <div className="nav-section">
           <NavLink to="/aboutme" className="nav-name">{t('nav.name')}</NavLink>
         </div>
 
-        <div className="nav-section">
-          <div className="nav-links">
+        <div className={`nav-section links-section ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
+          <div className="nav-links" onClick={() => setIsMobileMenuOpen(false)}>
             <NavLink to="/experience">{t('nav.experience')}</NavLink>
             <NavLink to="/skills">{t('nav.skills')}</NavLink>
             <NavLink to="/contact">{t('nav.contact')}</NavLink>
@@ -57,6 +64,13 @@ function App() {
         </div>
 
         <div className="nav-section">
+          <button 
+            className="burger-menu-btn" 
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            <FontAwesomeIcon icon={isMobileMenuOpen ? faTimes : faBars} />
+          </button>
           <div className="lang-switcher" ref={dropdownRef}>
           <button className="lang-trigger" onClick={() => setLangMenuOpen(!langMenuOpen)}>
             <FontAwesomeIcon icon={faGlobe} className="globe-icon" />
@@ -87,6 +101,8 @@ function App() {
           <Route path="*" element={<Navigate to="/aboutme" replace />} />
         </Routes>
       </main>
+
+      {showLogin && <Login onClose={() => setShowLogin(false)} />}
     </div>
   )
 }

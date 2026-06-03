@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { apiClient } from './apiService';
+import { apiClient } from '../services/apiService';
 
 interface ExperienceItem {
   role: string;

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { apiClient } from './apiService';
+import { apiClient } from '../services/apiService'
 import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
@@ -9,7 +9,7 @@ import {
 import { 
   faDatabase, faServer, faTerminal, faCogs, faUsers, faCode 
 } from '@fortawesome/free-solid-svg-icons';
-import type { Skill } from './assets/Interfaces/Skills.interface';
+import type { Skill } from '../Interfaces/Skills.interface'
 
 // Static mappings moved outside to avoid re-creation on every render
 const iconMap: Record<string, any> = {

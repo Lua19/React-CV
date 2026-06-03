@@ -22,11 +22,9 @@ class ApiClient {
 
   /**
    * GET ALL SKILLS.
-   * @param path The endpoint path (e.g., '/experiences')
-   * @param headers Optional headers
    */
-  async getAllSkills(): Promise<T> {
-    const response = await fetch(`${this.baseUrl}/Skills`,{
+  async getAllSkills<T = any>(): Promise<T> {
+    const response = await fetch(`${this.baseUrl}/Skills`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -36,8 +34,8 @@ class ApiClient {
     return this.handleResponse<T>(response);
   }
 
-  async getAllExperiences(): Promise<T> {
-    const response = await fetch(`${this.baseUrl}/Experience`,{
+  async getAllExperiences<T = any>(): Promise<T> {
+    const response = await fetch(`${this.baseUrl}/Experience`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -46,6 +44,18 @@ class ApiClient {
 
     return this.handleResponse<T>(response);
   }
+  async loginAuth<T = any>(email: string, password: string): Promise<T> {
+    const response = await fetch(`${this.baseUrl}/Auth/login`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, password }),
+    });
+
+    return this.handleResponse<T>(response);
+  }
+
 
 }
 

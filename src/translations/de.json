@@ -9,7 +9,8 @@
     "title": "Über mich",
     "description": "Senior Full-stack-Entwickler mit mehr als 5 Jahren Erfahrung im Entwurf skalierbarer Systeme in Angular, .NET und mobilen Technologien, spezialisiert auf skalierbare REST-APIs und CI/CD-Pipelines. Bewährte Führung in Agile-Teams, Mentoring von Junior-Entwicklern und Treffen architektonischer Entscheidungen.",
     "linkedin": "LinkedIn",
-    "github": "Github"
+    "github": "Github",
+    "projects": "Aktuelle Projekte"
   },
   "skills": {
     "title": "Kernkompetenzen",
