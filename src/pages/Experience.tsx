@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { apiClient } from '../services/apiService';
+import { useDataCache } from '../DataCacheContext';
 
 interface ExperienceItem {
   role: string;
@@ -12,16 +13,22 @@ interface ExperienceItem {
 
 function Experience() {
   const { t } = useTranslation();
-  const [experiences, setExperiences] = useState<ExperienceItem[]>([]);
+  const { cache, updateCache } = useDataCache();
+  const [experiences, setExperiences] = useState<ExperienceItem[]>(cache.experiences || []);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState<'next' | 'prev'>('next');
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(!cache.experiences);
 
   useEffect(() => {
+      // Use cached data if available
+      if (cache.experiences) return;
+
+      setLoading(true);
       apiClient.getAllExperiences()
         .then(data => {
           setExperiences(data);
           setLoading(false);
+          updateCache('experiences', data);
         })
         .catch((error) => {
           console.error("Error fetching experiences:", error);

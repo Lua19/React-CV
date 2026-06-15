@@ -372,6 +372,12 @@
     width: 280px;
     height: 280px;
   }
+
+  .github-calendar-wrapper {
+    padding: 0 5vw;
+    width: 100%;
+    box-sizing: border-box;
+  }
 }
 
 .skills-table {
@@ -747,5 +753,49 @@
   .nav-links a.active {
     border-bottom: none;
     background-color: #f0f7ff;
+  }
+
+  .links-section .lang-switcher {
+    margin-top: 30px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(0, 152, 206, 0.2);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .links-section .lang-dropdown {
+    position: relative;
+    top: 10px;
+    right: auto;
+    box-shadow: none;
+    border: 1px solid rgba(0, 152, 206, 0.1);
+  }
+
+  .highlights-list {
+    margin: 0 auto;
+    padding: 0;
+    width: 90%;
+    max-width: 90%;
+    box-sizing: border-box;
+  }
+
+  .experience-card {
+    width: 90vw;
+  }
+}
+
+@media (min-width: 1025px) {
+  .burger-section {
+    flex: 0;
+  }
+
+  .links-section {
+    gap: 30px;
+  }
+
+  .nav-links {
+    width: auto;
+    gap: 30px;
   }
 }

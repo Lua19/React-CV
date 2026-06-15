@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons';
 import selfie from '../assets/selfie.jpg'
-import  {GitHubCalendar} from 'react-github-calendar';
+import { GitHubCalendar } from 'react-github-calendar';
 
 function AboutMe() {
   const { t } = useTranslation();
@@ -31,7 +31,9 @@ function AboutMe() {
       </div>
       <div className="current-projects">
         <h3>{t('aboutme.projects')}</h3>
-        <GitHubCalendar username="Lua19" />
+        <div className="github-calendar-wrapper">
+          <GitHubCalendar username="Lua19" />
+        </div>
       </div>
     </section>
   );

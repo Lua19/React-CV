@@ -5,9 +5,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGlobe, faChevronDown, faUser, faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 import Experience from './pages/Experience'
 import Skills from './pages/Skills'
-import Contact from './pages/Contact'
+import Manage from './pages/Manage'
 import AboutMe from './pages/AboutMe'
 import Login from './Login'
+import { DataCacheProvider } from './DataCacheContext'
 import './App.css'
 
 const languages = [
@@ -43,6 +44,7 @@ function App() {
   };
 
   return (
+    <DataCacheProvider>
     <div className="cv-app">
       <nav className="top-nav">
         <div className="nav-section login-trigger-section">
@@ -61,9 +63,28 @@ function App() {
             <NavLink to="/skills">{t('nav.skills')}</NavLink>
             <NavLink to="/contact">{t('nav.contact')}</NavLink>
           </div>
+
+          <div className="lang-switcher" ref={dropdownRef}>
+            <button className="lang-trigger" onClick={() => setLangMenuOpen(!langMenuOpen)}>
+              <FontAwesomeIcon icon={faGlobe} className="globe-icon" />
+              <span className="current-flag">{selectedLang.flag}</span>
+              <FontAwesomeIcon icon={faChevronDown} className={`chevron ${langMenuOpen ? 'open' : ''}`} />
+            </button>
+
+            {langMenuOpen && (
+              <ul className="lang-dropdown">
+                {languages.map((lang) => (
+                  <li key={lang.code} onClick={() => changeLanguage(lang)} className={selectedLang.code === lang.code ? 'active' : ''}>
+                    <span className="flag">{lang.flag}</span>
+                    <span className="name">{lang.name}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
         </div>
 
-        <div className="nav-section">
+        <div className="nav-section burger-section">
           <button 
             className="burger-menu-btn" 
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -71,23 +92,6 @@ function App() {
           >
             <FontAwesomeIcon icon={isMobileMenuOpen ? faTimes : faBars} />
           </button>
-          <div className="lang-switcher" ref={dropdownRef}>
-          <button className="lang-trigger" onClick={() => setLangMenuOpen(!langMenuOpen)}>
-            <FontAwesomeIcon icon={faGlobe} className="globe-icon" />
-            <span className="current-flag">{selectedLang.flag}</span>
-            <FontAwesomeIcon icon={faChevronDown} className={`chevron ${langMenuOpen ? 'open' : ''}`} />
-          </button>
-
-          {langMenuOpen && (
-            <ul className="lang-dropdown">
-              {languages.map((lang) => (
-                <li key={lang.code} onClick={() => changeLanguage(lang)} className={selectedLang.code === lang.code ? 'active' : ''}>
-                  <span className="flag">{lang.flag}</span>
-                  <span className="name">{lang.name}</span>
-                </li>
-              ))}
-            </ul>
-          )}
         </div>
         </div>
       </nav>
@@ -97,13 +101,14 @@ function App() {
           <Route path="/aboutme" element={<AboutMe />} />
           <Route path="/experience" element={<Experience />} />
           <Route path="/skills" element={<Skills />} />
-          <Route path="/contact" element={<Contact />} />
+          <Route path="/manage" element={<Manage />} />
           <Route path="*" element={<Navigate to="/aboutme" replace />} />
         </Routes>
       </main>
 
       {showLogin && <Login onClose={() => setShowLogin(false)} />}
     </div>
+    </DataCacheProvider>
   )
 }
 

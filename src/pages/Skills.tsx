@@ -10,6 +10,7 @@ import {
   faDatabase, faServer, faTerminal, faCogs, faUsers, faCode 
 } from '@fortawesome/free-solid-svg-icons';
 import type { Skill } from '../Interfaces/Skills.interface'
+import { useDataCache } from '../DataCacheContext';
 
 // Static mappings moved outside to avoid re-creation on every render
 const iconMap: Record<string, any> = {
@@ -26,14 +27,20 @@ const categories = [1, 2, 3, 4, 5, 6];
 
 function Skills() {
   const { i18n, t } = useTranslation();
-  const [skillList, setSkillList] = useState<Skill[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { cache, updateCache } = useDataCache();
+  const [skillList, setSkillList] = useState<Skill[]>(cache.skills || []);
+  const [loading, setLoading] = useState(!cache.skills);
 
   useEffect(() => {
+    // If data is already in cache, skip the fetch
+    if (cache.skills) return;
+
+    setLoading(true);
     apiClient.getAllSkills()
       .then(data => {
         setSkillList(data);
         setLoading(false);
+        updateCache('skills', data);
       })
       .catch((error) => {
         console.error("Error fetching skills:", error);
