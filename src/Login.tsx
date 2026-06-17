@@ -8,15 +8,18 @@ interface LoginProps {
 function Login({ onClose }: LoginProps) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError(null);
     try {
       const data = await apiClient.loginAuth(email, password) as any;
       sessionStorage.setItem('token', data.token);
       onClose();
     } catch (error) {
       console.error("Login attempt failed:", error);
+      setError("Invalid email or password. Please try again.");
     }
   };
 
@@ -28,6 +31,7 @@ function Login({ onClose }: LoginProps) {
           <h2>Login</h2>
           <div className="login-container">
             <form onSubmit={handleSubmit}>
+              {error && <div className="error-message" style={{color: 'red', marginBottom: '10px'}}>{error}</div>}
               <div className="form-group">
                 <label htmlFor="email">Email</label>
                 <input 

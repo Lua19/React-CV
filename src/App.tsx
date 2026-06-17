@@ -100,7 +100,10 @@ function App() {
           <Route path="/aboutme" element={<AboutMe />} />
           <Route path="/experience" element={<Experience />} />
           <Route path="/skills" element={<Skills />} />
-          <Route path="/manage" element={<Manage />} />
+          <Route 
+            path="/manage" 
+            element={sessionStorage.getItem('token') ? <Manage /> : <Navigate to="/aboutme" replace />} 
+          />
           <Route path="*" element={<Navigate to="/aboutme" replace />} />
         </Routes>
       </main>

@@ -4,7 +4,7 @@ class ApiClient {
   constructor() {
     // Uses Vite's environment variables. 
     // Define VITE_API_BASE_URL in your .env file for different environments.
-    this.baseUrl = 'https://localhost:7032/api';
+    this.baseUrl = import.meta.env.VITE_API_BASE_URL;
   }
 
   /**
