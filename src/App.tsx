@@ -93,7 +93,6 @@ function App() {
             <FontAwesomeIcon icon={isMobileMenuOpen ? faTimes : faBars} />
           </button>
         </div>
-        </div>
       </nav>
 
       <main className="main-content" key={location.pathname}>
