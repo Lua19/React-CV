@@ -24,7 +24,7 @@ class ApiClient {
    * GET ALL SKILLS.
    */
   async getAllSkills<T = any>(): Promise<T> {
-    const response = await fetch(`${this.baseUrl}/Skills`, {
+    const response = await fetch(`${this.baseUrl}api/Skills`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -35,7 +35,7 @@ class ApiClient {
   }
 
   async getAllExperiences<T = any>(): Promise<T> {
-    const response = await fetch(`${this.baseUrl}/Experience`, {
+    const response = await fetch(`${this.baseUrl}api/Experience`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -45,7 +45,7 @@ class ApiClient {
     return this.handleResponse<T>(response);
   }
   async loginAuth<T = any>(email: string, password: string): Promise<T> {
-    const response = await fetch(`${this.baseUrl}/Auth/login`, {
+    const response = await fetch(`${this.baseUrl}api/Auth/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
