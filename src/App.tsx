@@ -7,6 +7,8 @@ import Experience from './pages/Experience'
 import Skills from './pages/Skills'
 import Manage from './pages/Manage'
 import AboutMe from './pages/AboutMe'
+import Agent from './pages/Agent'
+import Certificates from './pages/Certificates'
 import Login from './Login'
 import { DataCacheProvider } from './DataCacheContext'
 import './App.css'
@@ -47,12 +49,6 @@ function App() {
     <DataCacheProvider>
     <div className="cv-app">
       <nav className="top-nav">
-        <div className="nav-section login-trigger-section">
-          <button onClick={() => setShowLogin(true)} className="login-icon-link" aria-label="Login">
-            <FontAwesomeIcon icon={faUser} />
-          </button>
-        </div>
-        
         <div className="nav-section">
           <NavLink to="/aboutme" className="nav-name">{t('nav.name')}</NavLink>
         </div>
@@ -61,7 +57,10 @@ function App() {
           <div className="nav-links" onClick={() => setIsMobileMenuOpen(false)}>
             <NavLink to="/experience">{t('nav.experience')}</NavLink>
             <NavLink to="/skills">{t('nav.skills')}</NavLink>
-            <NavLink to="/contact">{t('nav.contact')}</NavLink>
+            <NavLink to="/agent">Agent</NavLink>
+            <NavLink to="/certificates">Certificates</NavLink>
+            {/* The contact link seems to be missing from the Routes, you might want to add it. */}
+            {/* <NavLink to="/contact">{t('nav.contact')}</NavLink> */}
           </div>
 
           <div className="lang-switcher" ref={dropdownRef}>
@@ -82,6 +81,12 @@ function App() {
               </ul>
             )}
           </div>
+
+          {/* <div className="login-trigger-section">
+            <button onClick={() => setShowLogin(true)} className="login-icon-link" aria-label="Login">
+              <FontAwesomeIcon icon={faUser} />
+            </button>
+          </div> */}
         </div>
 
         <div className="nav-section burger-section">
@@ -100,6 +105,8 @@ function App() {
           <Route path="/aboutme" element={<AboutMe />} />
           <Route path="/experience" element={<Experience />} />
           <Route path="/skills" element={<Skills />} />
+          <Route path="/agent" element={<Agent />} />
+          <Route path="/certificates" element={<Certificates />} />
           <Route 
             path="/manage" 
             element={sessionStorage.getItem('token') ? <Manage /> : <Navigate to="/aboutme" replace />} 
