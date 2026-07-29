@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useLocation, Routes, Route, NavLink, Navigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGlobe, faChevronDown, faUser, faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faGlobe, faChevronDown, faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 import Experience from './pages/Experience'
 import Skills from './pages/Skills'
 import Manage from './pages/Manage'
