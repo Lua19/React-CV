@@ -57,8 +57,8 @@ function App() {
           <div className="nav-links" onClick={() => setIsMobileMenuOpen(false)}>
             <NavLink to="/experience">{t('nav.experience')}</NavLink>
             <NavLink to="/skills">{t('nav.skills')}</NavLink>
-            <NavLink to="/agent">Agent</NavLink>
             <NavLink to="/certificates">Certificates</NavLink>
+            <NavLink to="/agent">Agent</NavLink>
             {/* The contact link seems to be missing from the Routes, you might want to add it. */}
             {/* <NavLink to="/contact">{t('nav.contact')}</NavLink> */}
           </div>
