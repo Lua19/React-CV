@@ -73,11 +73,6 @@ function Experience() {
           className={`experience-card slide-in-${direction}`} 
           style={{ backgroundImage: `url(${experiences[currentIndex].imageURL})` }}
         >
-          <div className="experience-info-box">
-            <h3>{experiences[currentIndex].role}</h3>
-            <p className="company-name">{experiences[currentIndex].company}</p>
-            <p className="period">{experiences[currentIndex].period}</p>
-          </div>
         </div>
         <button 
           className="carousel-btn next" 
@@ -87,6 +82,7 @@ function Experience() {
           &gt;
         </button>
       </div>
+      
       <div className="carousel-indicators">
         {experiences.map((_, index) => (
           <button
@@ -97,7 +93,11 @@ function Experience() {
           />
         ))}
       </div>
-
+      <div className={`experience-info-box slide-in-${direction}`} key={`info-${currentIndex}`}>
+        <h3>{t(`experience.jobs.job${currentIndex}.role`)}</h3>
+        <p className="company-name">{t(`experience.jobs.job${currentIndex}.company`)}</p>
+        <p className="period">{t(`experience.jobs.job${currentIndex}.period`)}</p>
+      </div>
       <ul className={`highlights-list slide-in-${direction}`} key={`list-${currentIndex}`}>
         {experiences[currentIndex].highlights.map((item, idx) => (
           <li key={idx}>{item}</li>

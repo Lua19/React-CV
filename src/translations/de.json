@@ -24,7 +24,25 @@
   },
   "experience": {
     "title": "Beschäftigungshistorie",
-    "loading": "Erfahrung wird geladen..."
+    "loading": "Erfahrung wird geladen...",
+    "jobs": [
+      {
+        "id": 1,
+        "company": "Linguatec"
+      },
+      {
+        "id": 4,
+        "company": "Moneta Market"
+      },
+      {
+        "id": 5,
+        "company": "Autozone"
+      },
+      {
+        "id": 6,
+        "company": "Oracle"
+      }
+    ]
   },
   "contact": {
     "title": "Kontaktieren Sie mich",

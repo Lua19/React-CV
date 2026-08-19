@@ -24,7 +24,29 @@
   },
   "experience": {
     "title": "Historial de Empleo",
-    "loading": "Cargando Experiencia..."
+    "loading": "Cargando Experiencia...",
+    "jobs":{
+      "job0":{
+        "role":"Tutor lider de inglés",
+        "company": "Linguatec",
+        "period": "Febrero 2019 - Agosto 2022"
+      },
+      "job1":{
+        "role":"Desarrollador de Software Junior",
+        "company": "Moneta Market",
+        "period": "Enero 2022 - Noviembre 2022"
+      },
+      "job2":{
+        "role": "Programador Analista",
+        "company": "Autozone",
+        "period": "Enero 2023 - Julio 2025"
+      },
+      "job3":{
+        "role": "Desarrollador de Aplicaciones Senior",
+        "company": "Oracle",
+        "period": "Julio 2025 - Abril 2026"
+      }
+    }
   },
   "contact": {
     "title": "Contáctame",

@@ -15,20 +15,27 @@
   box-sizing: border-box;
   padding: 0;
 }
+.nav-section-name{
+  padding-left: 10%;
+  @media (max-width: 1024px) {
+    justify-content:start;
+  }
+}
 
 .nav-section {
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  @media (max-width: 1024px) {
-    justify-content:end
-  }
+}
+.nav-section.burger-section{
+  justify-content: end;
 }
 
 .nav-name {
+  padding-left:10%;
   font-weight: bold;
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   text-align: left;
   color: #0098ce;
   text-decoration: none;
@@ -44,16 +51,20 @@
 .nav-links a {
   text-decoration: none;
   color: #0098ce;
-  transition: color 0.3s;
+  transition: color 0.3s, background-color 0.3s;
   font-size: 1.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
 }
 
 .nav-links a:hover {
   color: #0077a5;
+  background-color: rgba(0, 152, 206, 0.1);
 }
 
 .nav-links a.active {
-  border-bottom: 2px solid #0098ce;
+  background-color: #0098ce;
+  color: #ffffff;
 }
 
 .main-content {
@@ -413,8 +424,9 @@
 }
 
 .experience-section h2 {
+  display: flex;
+  justify-content: center;
   font-size: 2rem;
-  padding-top: 2rem;
   padding-bottom: 2rem;
 }
 
@@ -467,14 +479,16 @@
   border: 5px solid #ffffff;
   border-radius: 20px;
 }
-
 .experience-info-box {
+  margin-top: 1rem;
   background-color: #ffffff;
   color: #0098ce;
   padding: 1rem;
   border-radius: 12px;
-  width: 50%;
   box-sizing: border-box;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .experience-info-box h3 {
@@ -770,8 +784,9 @@
   }
 
   .nav-links a.active {
-    border-bottom: none;
-    background-color: #f0f7ff;
+    background-color: #0098ce;
+    color: #ffffff;
+    border-bottom: none; /* Ensure no bottom border on mobile */
   }
 
   .links-section .lang-switcher {
@@ -801,6 +816,15 @@
 
   .experience-card {
     width: 90vw;
+    height: 30vh; /* Adjust height for mobile */
+  }
+
+  .experience-info-box {
+    position: static; /* Overrides absolute positioning */
+    transform: none; /* Resets desktop transform */
+    margin-top: 1.5rem; /* Space between image and info box */
+    text-align: center;
+    width: 75%;
   }
 }
 
@@ -889,4 +913,62 @@
 
 .agent-card-button:hover {
   background-color: #0056b3;
+}
+
+.certificates-section h2 {
+  display: flex;
+  justify-content: center;
+  font-size: 2rem;
+  padding-bottom: 2rem;
+}
+
+.certificates-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  gap: 2rem;
+  padding: 0 2rem;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.certificate-card {
+  background-color: #ffffff;
+  color: #0098ce;
+  border: 2px solid #0098ce;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 152, 206, 0.2);
+  aspect-ratio: 16 / 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.certificate-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 152, 206, 0.3);
+}
+
+.certificate-modal {
+  width: 90vw;
+  height: 90vh;
+  max-width: 1200px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.certificate-modal iframe {
+  flex-grow: 1;
+  border: none;
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  .certificates-container {
+    grid-template-columns: 1fr;
+  }
 }

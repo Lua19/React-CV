@@ -24,7 +24,41 @@
   },
   "experience": {
     "title": "Employment History",
-    "loading": "Loading Experience..."
+    "loading": "Loading Experience...",
+    "jobs":{
+      "job0":{
+        "role":"Lead English Professor",
+        "company": "Linguatec",
+        "period": "Feb 2019 - Aug 2022",
+        "highlights":[
+          "Sexx"
+        ]
+      },
+      "job1":{
+        "role":"Junior Software Developer",
+        "company": "Moneta Market",
+        "period": "Jan 2022 - Nov 2022",
+        "highlights":[
+          "Sexx"
+        ]
+      },
+      "job2":{
+        "role": "Programmer Analyst",
+        "company": "Autozone",
+        "period": "Jan 2023 - July 2025",
+        "highlights":[
+          "Sexx"
+        ]
+      },
+      "job3":{
+        "role": "Senior Applications Developer",
+        "company": "Oracle",
+        "period": "July 2025 - April 2026",
+        "highlights":[
+          "Sexx"
+        ]
+      }
+    }
   },
   "contact": {
     "title": "Contact Me",

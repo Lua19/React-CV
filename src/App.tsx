@@ -21,8 +21,8 @@ const languages = [
   // The emoji is kept for potential fallback or other uses.
   { code: 'EN', name: 'English', flag: '🇺🇸', image: US_flag },
   { code: 'ES', name: 'Español', flag: '🇲🇽', image: MX_flag },
-  { code: 'FR', name: 'Français', flag: '🇫🇷', image: FR_flag },
-  { code: 'DE', name: 'Deutsch', flag: 'DE', image: DE_flag },
+  // { code: 'FR', name: 'Français', flag: '🇫🇷', image: FR_flag },
+  // { code: 'DE', name: 'Deutsch', flag: 'DE', image: DE_flag },
 ];
 
 function App() {
@@ -55,18 +55,17 @@ function App() {
     <DataCacheProvider>
     <div className="cv-app">
       <nav className="top-nav">
-        <div className="nav-section">
+        <div className="nav-section nav-name-section">
           <NavLink to="/" className="nav-name">{t('nav.name')}</NavLink>
         </div>
 
         <div className={`nav-section links-section ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
           <div className="nav-links" onClick={() => setIsMobileMenuOpen(false)}>
             <NavLink to="/experience">{t('nav.experience')}</NavLink>
+
             <NavLink to="/skills">{t('nav.skills')}</NavLink>
-            <NavLink to="/certificates">Certificates</NavLink>
-            <NavLink to="/agent">Agent</NavLink>
-            {/* The contact link seems to be missing from the Routes, you might want to add it. */}
-            {/* <NavLink to="/contact">{t('nav.contact')}</NavLink> */}
+            {/* <NavLink to="/certificates">Certificates</NavLink> */}
+            {/* <NavLink to="/agent">Agent</NavLink> */}
           </div>
 
           <div className="lang-switcher" ref={dropdownRef}>

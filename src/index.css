@@ -73,6 +73,7 @@
 @media (max-width: 767px) {
   #root {
     width: 100vw;
+    border-inline: none;
   }
 }
 
