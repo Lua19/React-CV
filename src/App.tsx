@@ -14,8 +14,6 @@ import { DataCacheProvider } from './DataCacheContext'
 import './App.css'
 import US_flag from './assets/US-16px.png';
 import MX_flag from './assets/MX-16px.png';
-import FR_flag from './assets/FR-16px.png';
-import DE_flag from './assets/DE-16px.png';
 
 const languages = [
   // The emoji is kept for potential fallback or other uses.
