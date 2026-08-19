@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useLocation, Routes, Route, NavLink, Navigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGlobe, faChevronDown, faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown, faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 import Experience from './pages/Experience'
 import Skills from './pages/Skills'
 import Manage from './pages/Manage'
@@ -12,11 +12,17 @@ import Certificates from './pages/Certificates'
 import Login from './Login'
 import { DataCacheProvider } from './DataCacheContext'
 import './App.css'
+import US_flag from './assets/US-16px.png';
+import MX_flag from './assets/MX-16px.png';
+import FR_flag from './assets/FR-16px.png';
+import DE_flag from './assets/DE-16px.png';
 
 const languages = [
-  { code: 'EN', name: 'English', flag: '🇺🇸' },
-  { code: 'ES', name: 'Español', flag: '🇲🇽' },
-  { code: 'DE', name: 'Deutsch', flag: '🇩🇪' },
+  // The emoji is kept for potential fallback or other uses.
+  { code: 'EN', name: 'English', flag: '🇺🇸', image: US_flag },
+  { code: 'ES', name: 'Español', flag: '🇲🇽', image: MX_flag },
+  { code: 'FR', name: 'Français', flag: '🇫🇷', image: FR_flag },
+  { code: 'DE', name: 'Deutsch', flag: 'DE', image: DE_flag },
 ];
 
 function App() {
@@ -65,8 +71,7 @@ function App() {
 
           <div className="lang-switcher" ref={dropdownRef}>
             <button className="lang-trigger" onClick={() => setLangMenuOpen(!langMenuOpen)}>
-              <FontAwesomeIcon icon={faGlobe} className="globe-icon" />
-              <span className="current-flag">{selectedLang.flag}</span>
+              <img src={selectedLang.image} alt={selectedLang.code} className="current-flag-img" />
               <FontAwesomeIcon icon={faChevronDown} className={`chevron ${langMenuOpen ? 'open' : ''}`} />
             </button>
 
@@ -74,7 +79,7 @@ function App() {
               <ul className="lang-dropdown">
                 {languages.map((lang) => (
                   <li key={lang.code} onClick={() => changeLanguage(lang)} className={selectedLang.code === lang.code ? 'active' : ''}>
-                    <span className="flag">{lang.flag}</span>
+                    <img src={lang.image} alt={lang.code} className="flag-img" />
                     <span className="name">{lang.name}</span>
                   </li>
                 ))}
