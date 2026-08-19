@@ -50,7 +50,7 @@ function App() {
     <div className="cv-app">
       <nav className="top-nav">
         <div className="nav-section">
-          <NavLink to="/aboutme" className="nav-name">{t('nav.name')}</NavLink>
+          <NavLink to="/" className="nav-name">{t('nav.name')}</NavLink>
         </div>
 
         <div className={`nav-section links-section ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
@@ -102,7 +102,7 @@ function App() {
 
       <main className="main-content" key={location.pathname}>
         <Routes>
-          <Route path="/aboutme" element={<AboutMe />} />
+          <Route path="/" element={<AboutMe />} />
           <Route path="/experience" element={<Experience />} />
           <Route path="/skills" element={<Skills />} />
           <Route path="/agent" element={<Agent />} />
@@ -111,7 +111,7 @@ function App() {
             path="/manage" 
             element={sessionStorage.getItem('token') ? <Manage /> : <Navigate to="/aboutme" replace />} 
           />
-          <Route path="*" element={<Navigate to="/aboutme" replace />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>
 
