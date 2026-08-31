@@ -65,5 +65,9 @@
     "description": "I am always open to discussing new projects, creative ideas, or opportunities to be part of your visions.",
     "email": "Email",
     "linkedin": "LinkedIn"
+  },
+  "dashboard": {
+    "title": "Experience Management",
+    "welcome": "Welcome to your Dashboard!"
   }
 }

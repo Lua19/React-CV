@@ -34,29 +34,78 @@ class ApiClient {
     return this.handleResponse<T>(response);
   }
 
+  private getHeaders(auth = false): HeadersInit {
+    const headers: Record<string, string> = {
+      'Content-Type': 'application/json',
+    };
+    if (auth) {
+      const token = sessionStorage.getItem('token');
+      if (token) {
+        headers['Authorization'] = `Bearer ${token}`;
+      }
+    }
+    return headers;
+  }
+
   async getAllExperiences<T = any>(): Promise<T> {
     const response = await fetch(`${this.baseUrl}/api/Experience`, {
       method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: this.getHeaders(),
     });
 
     return this.handleResponse<T>(response);
   }
+
+  async createExperience<T = any>(experience: any): Promise<T> {
+    const response = await fetch(`${this.baseUrl}/api/Experience`, {
+      method: 'POST',
+      headers: this.getHeaders(true),
+      body: JSON.stringify(experience),
+    });
+
+    return this.handleResponse<T>(response);
+  }
+
+  async updateExperience<T = any>(id: number | string, experience: any): Promise<T> {
+    const response = await fetch(`${this.baseUrl}/api/Experience/${id}`, {
+      method: 'PUT',
+      headers: this.getHeaders(true),
+      body: JSON.stringify(experience),
+    });
+
+    return this.handleResponse<T>(response);
+  }
+
+  async deleteExperience<T = any>(id: number | string): Promise<T> {
+    const response = await fetch(`${this.baseUrl}/api/Experience/${id}`, {
+      method: 'DELETE',
+      headers: this.getHeaders(true),
+    });
+
+    return this.handleResponse<T>(response);
+  }
+
   async loginAuth<T = any>(email: string, password: string): Promise<T> {
     const response = await fetch(`${this.baseUrl}/api/Auth/login`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: this.getHeaders(),
       body: JSON.stringify({ email, password }),
     });
 
     return this.handleResponse<T>(response);
   }
 
+  async verifyToken<T = any>(token: string): Promise<T> {
+    const response = await fetch(`${this.baseUrl}/api/Auth/verify`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ Token: token }),
+    });
 
+    return this.handleResponse<T>(response);
+  }
 }
 
 export const apiClient = new ApiClient();

@@ -53,5 +53,9 @@
     "description": "Siempre estoy abierto a discutir nuevos proyectos, ideas creativas u oportunidades para ser parte de tus visiones.",
     "email": "Correo electrónico",
     "linkedin": "LinkedIn"
+  },
+  "dashboard": {
+    "title": "Gestión de Experiencias",
+    "welcome": "¡Bienvenido a tu Panel de Control!"
   }
 }

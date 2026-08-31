@@ -3,13 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { apiClient } from '../services/apiService';
 import { useDataCache } from '../DataCacheContext';
 
-interface ExperienceItem {
-  role: string;
-  company: string;
-  period: string;
-  imageURL: string;
-  highlights: string[];
-}
+import type { ExperienceItem } from '../Interfaces/Experience.interface';
 
 function Experience() {
   const { t } = useTranslation();
@@ -60,49 +54,55 @@ function Experience() {
   return (
     <section className="section experience-section" id="experience">
       <h2>{t('experience.title')}</h2>
-      <div className="carousel-container">
-        <button 
-          className="carousel-btn prev" 
-          onClick={prevExperience} 
-          disabled={currentIndex === 0}
-        >
-          &lt;
-        </button>
-        <div 
-          key={`card-${currentIndex}`}
-          className={`experience-card slide-in-${direction}`} 
-          style={{ backgroundImage: `url(${experiences[currentIndex].imageURL})` }}
-        >
-        </div>
-        <button 
-          className="carousel-btn next" 
-          onClick={nextExperience} 
-          disabled={currentIndex === experiences.length - 1}
-        >
-          &gt;
-        </button>
-      </div>
-      
-      <div className="carousel-indicators">
-        {experiences.map((_, index) => (
-          <button
-            key={index}
-            className={`indicator-dot ${index === currentIndex ? 'active' : ''}`}
-            onClick={() => goToIndex(index)}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
-      </div>
-      <div className={`experience-info-box slide-in-${direction}`} key={`info-${currentIndex}`}>
-        <h3>{t(`experience.jobs.job${currentIndex}.role`)}</h3>
-        <p className="company-name">{t(`experience.jobs.job${currentIndex}.company`)}</p>
-        <p className="period">{t(`experience.jobs.job${currentIndex}.period`)}</p>
-      </div>
-      <ul className={`highlights-list slide-in-${direction}`} key={`list-${currentIndex}`}>
-        {experiences[currentIndex].highlights.map((item, idx) => (
-          <li key={idx}>{item}</li>
-        ))}
-      </ul>
+      {experiences.length > 0 && experiences[currentIndex] ? (
+        <>
+          <div className="carousel-container">
+            <button 
+              className="carousel-btn prev" 
+              onClick={prevExperience} 
+              disabled={currentIndex === 0}
+            >
+              &lt;
+            </button>
+            <div 
+              key={`card-${currentIndex}`}
+              className={`experience-card slide-in-${direction}`} 
+              style={{ backgroundImage: `url(${experiences[currentIndex].imageURL || experiences[currentIndex].image || ''})` }}
+            >
+            </div>
+            <button 
+              className="carousel-btn next" 
+              onClick={nextExperience} 
+              disabled={currentIndex === experiences.length - 1}
+            >
+              &gt;
+            </button>
+          </div>
+          
+          <div className="carousel-indicators">
+            {experiences.map((_, index) => (
+              <button
+                key={index}
+                className={`indicator-dot ${index === currentIndex ? 'active' : ''}`}
+                onClick={() => goToIndex(index)}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
+          <div className={`experience-info-box slide-in-${direction}`} key={`info-${currentIndex}`}>
+            <h3>{t(`experience.jobs.job${currentIndex}.role`, experiences[currentIndex].role)}</h3>
+            <p className="company-name">{t(`experience.jobs.job${currentIndex}.company`, experiences[currentIndex].company)}</p>
+            <p className="period">{t(`experience.jobs.job${currentIndex}.period`, experiences[currentIndex].period)}</p>
+          </div>
+          <ul className={`highlights-list slide-in-${direction}`} key={`list-${currentIndex}`}>
+            {experiences[currentIndex].highlights?.map((item, idx) => (
+              <li key={idx}>{item}</li>
+            ))}
+          </ul>
+        </>
+      ) : (
+        <p>{t('experience.noExperiences', 'No experiences available.')}</p>
+      )}
     </section>
   );
 }

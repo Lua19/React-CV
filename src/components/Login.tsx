@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { apiClient } from './services/apiService';
+import { useNavigate } from 'react-router-dom';
+import { apiClient } from '../services/apiService';
 
 interface LoginProps {
   onClose: () => void;
 }
 
 function Login({ onClose }: LoginProps) {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
@@ -17,6 +19,7 @@ function Login({ onClose }: LoginProps) {
       const data = await apiClient.loginAuth(email, password) as any;
       sessionStorage.setItem('token', data.token);
       onClose();
+      navigate('/dashboard');
     } catch (error) {
       console.error("Login attempt failed:", error);
       setError("Invalid email or password. Please try again.");

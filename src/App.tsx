@@ -1,15 +1,17 @@
 import { useState, useEffect, useRef } from 'react';
-import { useLocation, Routes, Route, NavLink, Navigate } from 'react-router-dom';
+import { useLocation, useNavigate, Routes, Route, NavLink, Navigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown, faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown, faBars, faTimes, faUser } from '@fortawesome/free-solid-svg-icons';
 import Experience from './pages/Experience'
 import Skills from './pages/Skills'
-import Manage from './pages/Manage'
 import AboutMe from './pages/AboutMe'
 import Agent from './pages/Agent'
 import Certificates from './pages/Certificates'
-import Login from './Login'
+import Dashboard from './pages/Dashboard'
+import Login from './components/Login'
+import ProtectedRoute from './components/ProtectedRoute'
+import { apiClient } from './services/apiService'
 import { DataCacheProvider } from './DataCacheContext'
 import './App.css'
 import US_flag from './assets/US-16px.png';
@@ -25,6 +27,7 @@ const languages = [
 
 function App() {
   const location = useLocation();
+  const navigate = useNavigate();
   const { t, i18n } = useTranslation();
   const [langMenuOpen, setLangMenuOpen] = useState(false);
   const [selectedLang, setSelectedLang] = useState(languages[0]);
@@ -49,6 +52,25 @@ function App() {
     i18n.changeLanguage(lang.code.toLowerCase());
   };
 
+  const handleLoginClick = async () => {
+    const token = sessionStorage.getItem('token');
+    if (token) {
+      try {
+        const data = await apiClient.verifyToken(token);
+        const isValid = data?.valid === true || data?.Valid === true;
+        const hasAdminRights = data?.adminRights === true || data?.AdminRights === true;
+
+        if (isValid && hasAdminRights) {
+          navigate('/dashboard');
+          return;
+        }
+      } catch (error) {
+        console.error('Token verification error:', error);
+      }
+    }
+    setShowLogin(true);
+  };
+
   return (
     <DataCacheProvider>
     <div className="cv-app">
@@ -62,8 +84,8 @@ function App() {
             <NavLink to="/experience">{t('nav.experience')}</NavLink>
 
             <NavLink to="/skills">{t('nav.skills')}</NavLink>
-            {/* <NavLink to="/certificates">Certificates</NavLink> */}
-            {/* <NavLink to="/agent">Agent</NavLink> */}
+            <NavLink to="/certificates">Certificates</NavLink>
+            <NavLink to="/agent">Agent</NavLink>
           </div>
 
           <div className="lang-switcher" ref={dropdownRef}>
@@ -84,11 +106,7 @@ function App() {
             )}
           </div>
 
-          {/* <div className="login-trigger-section">
-            <button onClick={() => setShowLogin(true)} className="login-icon-link" aria-label="Login">
-              <FontAwesomeIcon icon={faUser} />
-            </button>
-          </div> */}
+          
         </div>
 
         <div className="nav-section burger-section">
@@ -110,12 +128,24 @@ function App() {
           <Route path="/agent" element={<Agent />} />
           <Route path="/certificates" element={<Certificates />} />
           <Route 
-            path="/manage" 
-            element={sessionStorage.getItem('token') ? <Manage /> : <Navigate to="/aboutme" replace />} 
+            path="/dashboard" 
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            } 
           />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>
+
+      <small className="bottom-left-login">
+        <div className="login-trigger-section">
+          <button onClick={handleLoginClick} className="login-icon-link" aria-label="Login">
+            <FontAwesomeIcon icon={faUser} />
+          </button>
+        </div>
+      </small>
 
       {showLogin && <Login onClose={() => setShowLogin(false)} />}
     </div>
